@@ -42,20 +42,38 @@
                         <video id="qr-scanner" width="390" height="250"></video>
                     </div>
                     <div class="spinner-border text-primary" style="display: none;" id="messages-loader" role="status"></div>
-                    <div id="error-message-container" style="display: none;">
-                        <div class="alert alert-danger d-flex align-items-center" style="width: 94%;" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-                                <use xlink:href="#exclamation-triangle-fill" />
-                            </svg>
-                            <div id="error-message"></div>
+                    <form id="form-manual-search">
+                        <div class="row">
+                            <div class="col-12 mt-2">
+                                <p class="form-text mb-0">You can try to manual search if QR scanning doesn't work.</p>
+                                <p class="form-text">Make sure to input your own employee ID.</p>
+                            </div>
+                            <div class="col-7">
+                                <input type="text" class="form-control" placeholder="Enter employee ID" name="employee_id" id="employee-id" required>
+                            </div>
+                            <div class="col-5">
+                                <button type="submit" class="btn btn-primary">
+                                    <span>Manual search</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div id="success-message-container" style="display: none;">
-                        <div class="alert alert-success d-flex align-items-center" style="width: 94%;" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-                                <use xlink:href="#check-circle-fill" />
-                            </svg>
-                            <div id="success-message"></div>
+                    </form>
+                    <div class="mt-3">
+                        <div id="error-message-container" style="display: none;">
+                            <div class="alert alert-danger d-flex align-items-center" style="width: 94%;" role="alert">
+                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                                    <use xlink:href="#exclamation-triangle-fill" />
+                                </svg>
+                                <div id="error-message"></div>
+                            </div>
+                        </div>
+                        <div id="success-message-container" style="display: none;">
+                            <div class="alert alert-success d-flex align-items-center" style="width: 94%;" role="alert">
+                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                                    <use xlink:href="#check-circle-fill" />
+                                </svg>
+                                <div id="success-message"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,6 +161,15 @@
                     }
                 ]
             });
+
+            $('#form-manual-search').submit((event) => {
+                event.preventDefault();
+                const employeeId = $('#employee-id').val();
+                if (!employeeId) {
+                    return alert("Employee ID is required");
+                }
+                saveQR(`employee-qr-${employeeId}`);
+            });
         });
 
         let scanner = new Instascan.Scanner({
@@ -165,6 +192,9 @@
 
         const saveQR = (value) => {
             $('#messages-loader').show();
+            $('#success-message-container').hide();
+            $('#error-message-container').hide();
+
             $.ajax({
                 url: '<?= base_url('index.php/admin/time-records/scan-qr') ?>',
                 type: "post",
