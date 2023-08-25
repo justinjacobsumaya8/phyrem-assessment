@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'codeigniter/framework',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '93a9e9ff0fdcd696c8cc35fd6e2ad4d7e90e9273',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'codeigniter/framework' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '93a9e9ff0fdcd696c8cc35fd6e2ad4d7e90e9273',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -27,15 +27,6 @@
             'install_path' => __DIR__ . '/../doctrine/instantiator',
             'aliases' => array(),
             'dev_requirement' => true,
-        ),
-        'libern/qr-code-reader' => array(
-            'pretty_version' => 'v1.0.10',
-            'version' => '1.0.10.0',
-            'reference' => '4589a5e1535e49fc72e0e4a2334f067b4c662eb3',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../libern/qr-code-reader',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
         'mikey179/vfsstream' => array(
             'pretty_version' => 'v1.6.11',

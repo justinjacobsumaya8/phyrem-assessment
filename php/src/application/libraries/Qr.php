@@ -19,12 +19,4 @@ class Qr
 
         return $fileName;
     }
-
-    public function readQR($employeeId)
-    {
-        $reader = new Libern\QRCodeReader\QRCodeReader();
-        $path =  $_SERVER['DOCUMENT_ROOT'] . "/uploads/employees/qr-{$employeeId}.png";
-
-        return $reader->decode($path);
-    }
 }
