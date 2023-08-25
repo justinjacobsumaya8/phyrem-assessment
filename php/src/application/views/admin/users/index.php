@@ -23,6 +23,9 @@
                 <h4>Users</h4>
                 <a href="<?php echo base_url('admin/users/create') ?>" class="btn btn-primary">
                     <span>Create new</span>
+                    <svg class="bi" width="16" height="16">
+                        <use xlink:href="#plus-lg" />
+                    </svg>
                 </a>
             </div>
             <table id="users-table" class='display dataTable w-100'>

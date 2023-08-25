@@ -19,7 +19,15 @@
                 <?php if (isset($error)) echo $error; ?>
                 <?php if (isset($success)) echo $success; ?>
             </div>
-            <h4>Edit User</h4>
+            <div class="d-flex gap-3 align-items-center mb-4">
+                <h4>Edit User</h4>
+                <a href="<?php echo base_url('admin/users') ?>" class="btn btn-primary">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#backspace" />
+                    </svg>
+                    <span>Back</span>
+                </a>
+            </div>
             <div class="mt-3">
                 <?= form_open("admin/users/edit/{$user->id}"); ?>
                 <div class="mb-3">
@@ -34,7 +42,9 @@
                         <option value="1" <?= $user->user_type == "1" ? "selected" : "" ?>>Super admin</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">
+                    Submit
+                </button>
                 <?php echo form_close(); ?>
             </div>
         </div>

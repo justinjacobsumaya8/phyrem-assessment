@@ -59,6 +59,18 @@ class TimeRecordController extends CI_Controller
         $currentDatetime = $this->input->post('current_datetime');
         $employeeId = str_replace("{$qrName}-", "", $qrValue);
 
+        // Check if employee exist
+        $employee = $this->Employee->findById($employeeId);
+        if (!$employee) {
+            $result = json_encode([
+                "message" => "Employee doesn't exist"
+            ]);
+            return $this->output
+                ->set_status_header('422')
+                ->set_content_type('application/json')
+                ->set_output($result);
+        }
+
         $data = [
             "employee_id" => $employeeId,
             "current_datetime" => $currentDatetime

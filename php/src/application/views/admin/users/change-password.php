@@ -19,7 +19,15 @@
                 <?php if (isset($error)) echo $error; ?>
                 <?php if (isset($success)) echo $success; ?>
             </div>
-            <h4>Change Password</h4>
+            <div class="d-flex gap-3 align-items-center mb-4">
+                <h4>Change password</h4>
+                <a href="<?php echo base_url('admin/users') ?>" class="btn btn-primary">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#backspace" />
+                    </svg>
+                    <span>Back</span>
+                </a>
+            </div>
             <div class="mt-3">
                 <?php echo form_open("admin/users/change-password/{$user->id}"); ?>
                 <div class="mb-3">
