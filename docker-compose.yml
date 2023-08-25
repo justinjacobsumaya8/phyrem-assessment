@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  php-apache-environment:
+    container_name: php-apache-ci
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./php/src:/var/www/html/
+    ports:
+      - 8000:80
+  db:
+    container_name: db-ci
+    # image: mysql:5.7
+    image: mariadb:10.5
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql_root_password
+      MYSQL_DATABASE: phyrem-test
+      MYSQL_USER: mysql_user
+      MYSQL_PASSWORD: mysql_password
+    ports:
+      - 3310:3306
+  phpmyadmin:
+    container_name: phpmyadmin-ci
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    restart: always
+    environment:
+      PMA_HOST: db
+    platform: linux/amd64
+    depends_on:
+      - db
